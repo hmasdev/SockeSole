@@ -22,9 +22,67 @@ pip install .
 
 ## Usage
 
-| Server-side | Client-side |
-| :--- | :--- |
-|<pre lang="python"></br>>>> from sockesole import SocketConsoleServer</br>>>> server = SocketConsoleServer(host='localhost', port=10111)</br>>>> server.run()</br></br>>>> server.get_keys()</br>[('127.0.0.1', 58167)]</br>>>> server.get_console(server.get_keys()[0]).echo('hello from server')</br></br></br>>>> server.get_console(server.get_keys()[0]).prompt('say something', wait=0.01)</br></br></br></br>'reponse'</br></br></br></br>>>> server.get_keys()</br>[]</pre>|<pre lang="python"></br>>>> from sockesole import SocketConsoleClient</br></br></br>>>> client = SocketConsoleClient.connect('localhost', port=10111)</br></br></br></br>>>> client.read()</br>'hello from server'</br></br>>>> client.read()</br>'say something'</br>>>> client.write('reponse')</br></br>>>> client.close()</br>>>> client.alive()</br>False</br></br></br></pre>
+<table>
+
+<tr>
+<td>Server-side</td>
+<td>Client-side</td>
+</tr>
+
+<tr>
+<td>
+
+```python
+>>> from sockesole import SocketConsoleServer
+>>> server = SocketConsoleServer(host='localhost', port=10111)
+>>> server.run()
+-
+>>> server.get_keys()
+[('127.0.0.1', 58167)]
+>>> server.get_console(server.get_keys()[0]).echo('hello from server')
+-
+-
+>>> server.get_console(server.get_keys()[0]).prompt('say something', wait=0.01)
+-
+-
+'reponse'
+-
+-
+-
+-
+>>> server.get_keys()
+[]
+```
+
+</td>
+<td>
+
+```python
+>>> from sockesole import SocketConsoleClient
+-
+-
+>>> client = SocketConsoleClient.connect('localhost', port=10111)
+-
+-
+-
+>>> client.read()
+'hello from server'
+-
+>>> client.read()
+'say something'
+>>> client.write('reponse')
+-
+>>> client.close()
+>>> client.alive()
+False
+-
+-
+```
+
+</td>
+</tr>
+
+</table>
 
 ## Contribution
 
