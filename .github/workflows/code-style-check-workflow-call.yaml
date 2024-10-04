@@ -34,4 +34,4 @@ jobs:
 
       - name: Run flake8
         run: |
-          flake8 sockesole tests --show-source
+          uv run flake8 sockesole tests --show-source
