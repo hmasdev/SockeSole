@@ -216,11 +216,13 @@ class SocketConsoleServer(
         buffer: int = 4096,
         queue_size: int = 5,
         clean_interval: float = 5,
+        console_cls: type[SocketConsole] = SocketConsole,
         logger: Logger = getLogger(__name__),
     ) -> None:
         self._host = host
         self._port = port
         self._queue_size = queue_size
+        self._console_cls = console_cls
         self.buffer = buffer
         self.clean_interval = clean_interval
         self.logger = logger
@@ -279,7 +281,7 @@ class SocketConsoleServer(
                 try:
                     conn, addr = server.accept()
                     self.logger.info(f"Connection from {addr}")
-                    console = SocketConsole(
+                    console = self._console_cls(
                         conn=conn,
                         client_address=addr,
                         buffer=self.buffer,
